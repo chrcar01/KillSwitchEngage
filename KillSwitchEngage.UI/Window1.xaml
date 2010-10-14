@@ -1,0 +1,12 @@
+﻿<Window x:Class="KillSwitchEngage.UI.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Window1" Height="300" Width="300">
+    <Grid>
+        <Button Height="25" Width="80" Content="Click Me">
+            <Button.BitmapEffect>
+                <OuterGlowBitmapEffect GlowColor="Blue" GlowSize="5" />
+            </Button.BitmapEffect>
+        </Button>
+    </Grid>
+</Window>

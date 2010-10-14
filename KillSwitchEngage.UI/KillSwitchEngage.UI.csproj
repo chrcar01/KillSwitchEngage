@@ -11,7 +11,8 @@
     <RootNamespace>KillSwitchEngage.UI</RootNamespace>
     <AssemblyName>KillSwitchEngage.UI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -36,8 +37,37 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AvalonDock">
+      <HintPath>..\lib\AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL" />
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\lib\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
+      <HintPath>..\lib\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WPF4">
+      <HintPath>..\lib\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="Magellan">
+      <HintPath>..\lib\Magellan.dll</HintPath>
+    </Reference>
+    <Reference Include="Magellan.Behaviors">
+      <HintPath>..\lib\Magellan.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="Magellan.Transitionals">
+      <HintPath>..\lib\Magellan.Transitionals.dll</HintPath>
+    </Reference>
+    <Reference Include="SLF">
+      <HintPath>..\lib\SLF.dll</HintPath>
+    </Reference>
+    <Reference Include="SLF.EntLib50Facade">
+      <HintPath>..\lib\SLF.EntLib50Facade.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -45,6 +75,9 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Transitionals">
+      <HintPath>..\lib\Transitionals.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -55,6 +88,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Infrastructure\IBusy.cs" />
+    <Compile Include="Infrastructure\MessageBoxCommand.cs" />
+    <Compile Include="Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\BusyIndicator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CircularProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\NavHostControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Features\Home\Views\Index.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,12 +117,44 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\BusyIndicator.xaml.cs">
+      <DependentUpon>BusyIndicator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CircularProgressBar.xaml.cs">
+      <DependentUpon>CircularProgressBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NavHostControl.xaml.cs">
+      <DependentUpon>NavHostControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Home\HomeController.cs" />
+    <Compile Include="Features\Home\Views\Index.xaml.cs">
+      <DependentUpon>Index.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Home\Views\IndexViewModel.cs" />
+    <Compile Include="Infrastructure\AsynchronousCommand.cs" />
+    <Compile Include="Infrastructure\BusyStatusMessage.cs" />
+    <Compile Include="Infrastructure\CoreController.cs" />
+    <Compile Include="Infrastructure\CoreViewModel.cs" />
+    <Compile Include="Infrastructure\DocumentAddedEventArgs.cs" />
+    <Compile Include="Infrastructure\DocumentAddRequestedEventArgs.cs" />
+    <Compile Include="Infrastructure\ISupportMessageTokens.cs" />
+    <Compile Include="Infrastructure\NavigateCommand.cs" />
+    <Compile Include="Infrastructure\NavigationDirections.cs" />
+    <Compile Include="Infrastructure\NavigationEventArgs.cs" />
+    <Compile Include="Infrastructure\NavigationEventArgs`1.cs" />
+    <Compile Include="Infrastructure\ValueConverters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Infrastructure\WindsorControllerFactory.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Window1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,12 +172,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

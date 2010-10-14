@@ -1,0 +1,346 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Magellan.Transitionals</name>
+    </assembly>
+    <members>
+        <member name="T:Magellan.Transitionals.Behaviors.NavigateWithTransitionAction">
+            <summary>
+            A Blend Trigger Action that makes it easy to navigate to actions on controllers using a transition.
+            </summary>
+        </member>
+        <member name="M:Magellan.Transitionals.Behaviors.NavigateWithTransitionAction.PrepareRequest(Magellan.Routing.RouteValueDictionary)">
+            <summary>
+            Prepares the request.
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="P:Magellan.Transitionals.Behaviors.NavigateWithTransitionAction.Transition">
+            <summary>
+            Gets or sets the name of the transition to play when navigating between pages.
+            </summary>
+            <value>The transition.</value>
+        </member>
+        <member name="T:Magellan.Transitionals.NavigatorExtensions">
+            <summary>
+            Extension methods for the <see cref="T:Magellan.INavigator"/> interface that make it easy to use transitions.
+            </summary>
+        </member>
+        <member name="M:Magellan.Transitionals.NavigatorExtensions.NavigateWithTransition(Magellan.INavigator,System.String,System.String,System.String)">
+            <summary>
+            Navigates to the specified controller and action using a transition.
+            </summary>
+            <param name="navigator">The navigator that will perform the navigation.</param>
+            <param name="controller">The controller.</param>
+            <param name="action">The action.</param>
+            <param name="transition">The transition.</param>
+        </member>
+        <member name="M:Magellan.Transitionals.NavigatorExtensions.NavigateWithTransition(Magellan.INavigator,System.String,System.String,System.String,System.Object)">
+            <summary>
+            Navigates to the specified controller and action, passing the parameters dictionary to the action, using a transiton.
+            </summary>
+            <param name="navigator">The navigator that will perform the navigation.</param>
+            <param name="controller">The controller.</param>
+            <param name="action">The action.</param>
+            <param name="transition">The transition.</param>
+            <param name="parameters">The parameters.</param>
+        </member>
+        <member name="T:Magellan.Transitionals.NavigationTransition">
+            <summary>
+            Represents an item registered in the <see cref="T:Magellan.Transitionals.NavigationTransitionRegistry"/>.
+            </summary>
+        </member>
+        <member name="M:Magellan.Transitionals.NavigationTransition.#ctor(System.String,System.String,System.Func{Transitionals.Transition})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Magellan.Transitionals.NavigationTransition"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="reverse">The reverse.</param>
+            <param name="transitionBuilder">The transition builder.</param>
+        </member>
+        <member name="M:Magellan.Transitionals.NavigationTransition.CreateTransition">
+            <summary>
+            Creates an instance of the transition.
+            </summary>
+        </member>
+        <member name="P:Magellan.Transitionals.NavigationTransition.Name">
+            <summary>
+            Gets the name of this transition.
+            </summary>
+        </member>
+        <member name="P:Magellan.Transitionals.NavigationTransition.Reverse">
+            <summary>
+            Gets the name of the reverse transition.
+            </summary>
+        </member>
+        <member name="T:Magellan.Transitionals.NavigationTransitionPresenter">
+            <summary>
+            This control is added to the ContentTemplates of Frames as an alternative to the content presenter. It applies 
+            transitions based on navigation requests. 
+            </summary>
+        </member>
+        <member name="F:Magellan.Transitionals.NavigationTransitionPresenter.TransitionRegistryProperty">
+            <summary>
+            Dependency property for the <see cref="P:Magellan.Transitionals.NavigationTransitionPresenter.TransitionRegistry"/> property.
+            </summary>
+        </member>
+        <member name="M:Magellan.Transitionals.NavigationTransitionPresenter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Magellan.Transitionals.NavigationTransitionPresenter"/> class.
+            </summary>
+        </member>
+        <member name="M:Magellan.Transitionals.NavigationTransitionPresenter.OnPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Invoked whenever the effective value of any dependency property on this <see cref="T:System.Windows.FrameworkElement"/> has been updated. The specific dependency property that changed is reported in the arguments parameter. Overrides <see cref="M:System.Windows.DependencyObject.OnPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs)"/>.
+            </summary>
+            <param name="e">The event data that describes the property that changed, as well as old and new values.</param>
+        </member>
+        <member name="P:Magellan.Transitionals.NavigationTransitionPresenter.TransitionRegistry">
+            <summary>
+            Gets or sets the registry of transition animations.
+            </summary>
+            <value>The transition registry.</value>
+        </member>
+        <member name="T:Magellan.Transitionals.NavigationTransitionRegistry">
+            <summary>
+            Stores a list of transitions and the reverse of each transition.
+            </summary>
+        </member>
+        <member name="M:Magellan.Transitionals.NavigationTransitionRegistry.Get(System.String)">
+            <summary>
+            Gets a transition by the specified name.
+            </summary>
+            <param name="name">The name.</param>
+        </member>
+        <member name="M:Magellan.Transitionals.NavigationTransitionRegistry.Add(System.String,System.String,System.Func{Transitionals.Transition})">
+            <summary>
+            Adds a transition with a name and the name of the transition to play when reversing.
+            </summary>
+            <param name="name">The name of this transition.</param>
+            <param name="reverseName">The name of the transition to play when reversing.</param>
+            <param name="transitionBuilder">A callback that will instantiate the transition.</param>
+        </member>
+        <member name="T:Magellan.Transitionals.NavigationTransitions">
+            <summary>
+            Provides a well-known registry of default navigation transitions.
+            </summary>
+        </member>
+        <member name="M:Magellan.Transitionals.NavigationTransitions.#cctor">
+            <summary>
+            Initializes the <see cref="T:Magellan.Transitionals.NavigationTransitions"/> class.
+            </summary>
+        </member>
+        <member name="P:Magellan.Transitionals.NavigationTransitions.Table">
+            <summary>
+            Gets the table of transitions that are currently registered.
+            </summary>
+        </member>
+        <member name="T:Magellan.Transitionals.NavigationTransitionSelector">
+            <summary>
+            This object is applied to a TransitionElement. It monitors a NavigationService and uses the navigation events to track state 
+            and select an appropriate transition.
+            </summary>
+        </member>
+        <member name="M:Magellan.Transitionals.NavigationTransitionSelector.#ctor(System.Windows.Navigation.NavigationService,Magellan.Transitionals.NavigationTransitionRegistry)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Magellan.Transitionals.NavigationTransitionSelector"/> class.
+            </summary>
+            <param name="navigationService">The navigation service.</param>
+            <param name="transitionRegistry">The transition registry.</param>
+        </member>
+        <member name="M:Magellan.Transitionals.NavigationTransitionSelector.SelectTransition(System.Object,System.Object)">
+            <summary>
+            Selects the transition based on the last navigation action that occurred.
+            </summary>
+            <param name="oldContent">The old content.</param>
+            <param name="newContent">The new content.</param>
+        </member>
+        <member name="P:Magellan.Transitionals.NavigationTransitionSelector.BackStack">
+            <summary>
+            Gets or sets the back stack.
+            </summary>
+            <value>The back stack.</value>
+        </member>
+        <member name="P:Magellan.Transitionals.NavigationTransitionSelector.ForwardStack">
+            <summary>
+            Gets or sets the forward stack.
+            </summary>
+            <value>The forward stack.</value>
+        </member>
+        <member name="P:Magellan.Transitionals.NavigationTransitionSelector.CurrentTransition">
+            <summary>
+            Gets or sets the current transition.
+            </summary>
+            <value>The current transition.</value>
+        </member>
+        <member name="P:Magellan.Transitionals.NavigationTransitionSelector.IsNavigating">
+            <summary>
+            Gets or sets a value indicating whether this instance is navigating.
+            </summary>
+            <value>
+            	<c>true</c> if this instance is navigating; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Magellan.Transitionals.Transitions.SlideDirection">
+            <summary>
+            Represents the direction of the slide navigation.
+            </summary>
+        </member>
+        <member name="F:Magellan.Transitionals.Transitions.SlideDirection.Back">
+            <summary>
+            Slides to the right.
+            </summary>
+        </member>
+        <member name="F:Magellan.Transitionals.Transitions.SlideDirection.Forward">
+            <summary>
+            Slides to the left.
+            </summary>
+        </member>
+        <member name="T:Magellan.Transitionals.Transitions.SlideTransition">
+            <summary>
+            A transition that places the old and new content side by side and slides them to the left or right.
+            </summary>
+        </member>
+        <member name="M:Magellan.Transitionals.Transitions.SlideTransition.#cctor">
+            <summary>
+            Initializes the <see cref="T:Magellan.Transitionals.Transitions.SlideTransition"/> class.
+            </summary>
+        </member>
+        <member name="M:Magellan.Transitionals.Transitions.SlideTransition.#ctor(Magellan.Transitionals.Transitions.SlideDirection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Magellan.Transitionals.Transitions.SlideTransition"/> class.
+            </summary>
+            <param name="direction">The direction.</param>
+        </member>
+        <member name="M:Magellan.Transitionals.Transitions.SlideTransition.BeginTransition(Transitionals.Controls.TransitionElement,System.Windows.Controls.ContentPresenter,System.Windows.Controls.ContentPresenter)">
+            <summary>
+            Begins the transition.
+            </summary>
+            <param name="transitionElement">The transition element.</param>
+            <param name="oldContent">The old content.</param>
+            <param name="newContent">The new content.</param>
+        </member>
+        <member name="M:Magellan.Transitionals.Transitions.SlideTransition.OnTransitionEnded(Transitionals.Controls.TransitionElement,System.Windows.Controls.ContentPresenter,System.Windows.Controls.ContentPresenter)">
+            <summary>
+            Called when the transition ends.
+            </summary>
+            <param name="transitionElement">The transition element.</param>
+            <param name="oldContent">The old content.</param>
+            <param name="newContent">The new content.</param>
+        </member>
+        <member name="T:Magellan.Transitionals.Transitions.ZoomInFrameworkElement">
+            <summary>
+            Code behind for ZoomInFrameworkElement.xaml.
+            </summary>
+            <summary>
+            ZoomInFrameworkElement
+            </summary>
+        </member>
+        <member name="M:Magellan.Transitionals.Transitions.ZoomInFrameworkElement.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Magellan.Transitionals.Transitions.ZoomInFrameworkElement"/> class.
+            </summary>
+        </member>
+        <member name="M:Magellan.Transitionals.Transitions.ZoomInFrameworkElement.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:Magellan.Transitionals.Transitions.ZoomInFrameworkElement.OldStoryboard">
+            <summary>
+            Gets the old storyboard.
+            </summary>
+            <value>The old storyboard.</value>
+        </member>
+        <member name="P:Magellan.Transitionals.Transitions.ZoomInFrameworkElement.NewStoryboard">
+            <summary>
+            Gets the new storyboard.
+            </summary>
+            <value>The new storyboard.</value>
+        </member>
+        <member name="P:Magellan.Transitionals.Transitions.ZoomInFrameworkElement.NewStyle">
+            <summary>
+            Gets the new style.
+            </summary>
+            <value>The new style.</value>
+        </member>
+        <member name="P:Magellan.Transitionals.Transitions.ZoomInFrameworkElement.OldStyle">
+            <summary>
+            Gets the old style.
+            </summary>
+            <value>The old style.</value>
+        </member>
+        <member name="T:Magellan.Transitionals.Transitions.ZoomInTransition">
+            <summary>
+            A transition that creates a zoom-in effect.
+            </summary>
+        </member>
+        <member name="M:Magellan.Transitionals.Transitions.ZoomInTransition.#cctor">
+            <summary>
+            Initializes the <see cref="T:Magellan.Transitionals.Transitions.ZoomInTransition"/> class.
+            </summary>
+        </member>
+        <member name="M:Magellan.Transitionals.Transitions.ZoomInTransition.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Magellan.Transitionals.Transitions.ZoomInTransition"/> class.
+            </summary>
+        </member>
+        <member name="T:Magellan.Transitionals.Transitions.ZoomOutFrameworkElement">
+            <summary>
+            Code behind for ZoomOutFrameworkElement.xaml.
+            </summary>
+            <summary>
+            ZoomOutFrameworkElement
+            </summary>
+        </member>
+        <member name="M:Magellan.Transitionals.Transitions.ZoomOutFrameworkElement.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Magellan.Transitionals.Transitions.ZoomOutFrameworkElement"/> class.
+            </summary>
+        </member>
+        <member name="M:Magellan.Transitionals.Transitions.ZoomOutFrameworkElement.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:Magellan.Transitionals.Transitions.ZoomOutFrameworkElement.OldStoryboard">
+            <summary>
+            Gets the old storyboard.
+            </summary>
+            <value>The old storyboard.</value>
+        </member>
+        <member name="P:Magellan.Transitionals.Transitions.ZoomOutFrameworkElement.NewStoryboard">
+            <summary>
+            Gets the new storyboard.
+            </summary>
+            <value>The new storyboard.</value>
+        </member>
+        <member name="P:Magellan.Transitionals.Transitions.ZoomOutFrameworkElement.NewStyle">
+            <summary>
+            Gets the new style.
+            </summary>
+            <value>The new style.</value>
+        </member>
+        <member name="P:Magellan.Transitionals.Transitions.ZoomOutFrameworkElement.OldStyle">
+            <summary>
+            Gets the old style.
+            </summary>
+            <value>The old style.</value>
+        </member>
+        <member name="T:Magellan.Transitionals.Transitions.ZoomOutTransition">
+            <summary>
+            A transition that creates a zoom-out effect.
+            </summary>
+        </member>
+        <member name="M:Magellan.Transitionals.Transitions.ZoomOutTransition.#cctor">
+            <summary>
+            Initializes the <see cref="T:Magellan.Transitionals.Transitions.ZoomOutTransition"/> class.
+            </summary>
+        </member>
+        <member name="M:Magellan.Transitionals.Transitions.ZoomOutTransition.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Magellan.Transitionals.Transitions.ZoomOutTransition"/> class.
+            </summary>
+        </member>
+    </members>
+</doc>

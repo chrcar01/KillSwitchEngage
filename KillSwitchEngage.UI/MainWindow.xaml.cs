@@ -1,27 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Magellan;
+using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using KillSwitchEngage.UI.Infrastructure;
+using KillSwitchEngage.Controls;
+using AvalonDock;
 
 namespace KillSwitchEngage.UI
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public MainWindow()
+		public MainWindowViewModel Model
+		{
+			get
+			{
+				return DataContext as MainWindowViewModel;
+			}
+			set
+			{
+				DataContext = value;
+			}
+		}
+		private NavigatorFactory _navFactory;
+		public MainWindow(NavigatorFactory navFactory)
 		{
 			InitializeComponent();
+			_navFactory = navFactory;
+			Model = new MainWindowViewModel();
+			Model.DocumentAddRequested += DocumentAddRequestedHandler;
 		}
+
+		void DocumentAddRequestedHandler(object sender, DocumentAddRequestedEventArgs e)
+		{
+			var navHost = new NavHostControl(_navFactory);			
+			var doc = new DocumentContent();
+			doc.Title = "Document" + Model.MyDocuments.Count;
+			doc.Content = navHost;
+			Model.MyDocuments.Add(doc);
+
+			// bring the newly added document's tab into focus.
+			docPane.SelectedIndex = Model.MyDocuments.Count - 1;
+			navHost.Navigate(e.Controller, e.Action);
+		}
+
 	}
 }

@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="KillSwitchEngage.Controls.NavHostControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             x:Name="navHost"
+             xmlns:converters="clr-namespace:KillSwitchEngage.UI.Infrastructure.ValueConverters"
+             xmlns:c="clr-namespace:KillSwitchEngage.Controls"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:BoolToVisibilityConverter x:Key="VisibilityConverter"></converters:BoolToVisibilityConverter>
+    </UserControl.Resources>
+    <Grid>
+        <Frame Name="mainFrame">
+            <Frame.Template>
+                <ControlTemplate TargetType="{x:Type Frame}">
+                    <DockPanel ClipToBounds="True">
+                        <NavigationTransitionPresenter Content="{TemplateBinding Content}" />
+                    </DockPanel>
+                </ControlTemplate>
+            </Frame.Template>
+        </Frame>
+        <c:BusyIndicator Visibility="{Binding Path=IsBusy, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl}}, Converter={StaticResource VisibilityConverter}}" />
+    </Grid>
+</UserControl>

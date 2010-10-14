@@ -1,0 +1,11 @@
+﻿<UserControl x:Class="KillSwitchEngage.Controls.BusyIndicator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:c="clr-namespace:KillSwitchEngage.Controls"
+             Height="Auto" Width="Auto" Background="Transparent">
+    <Grid>
+        <Viewbox Height="75" Width="75" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <c:CircularProgressBar />
+        </Viewbox>
+    </Grid>
+</UserControl>
