@@ -1,11 +1,13 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
+using KillSwitchEngage.Core.Commands;
+using KillSwitchEngage.Core.Messaging;
+using KillSwitchEngage.Core.Navigation;
 using Slf;
 using System;
 using System.Windows.Input;
-using KillSwitchEngage.UI.Infrastructure.Navigation;
 
-namespace KillSwitchEngage.UI.Infrastructure
+namespace KillSwitchEngage.Core.ViewModels
 {
 	public abstract class CoreViewModel : ViewModelBase, ISupportMessageTokens, IBusy
 	{

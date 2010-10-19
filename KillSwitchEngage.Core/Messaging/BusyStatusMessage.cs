@@ -1,6 +1,6 @@
 using System;
 
-namespace KillSwitchEngage.UI.Infrastructure
+namespace KillSwitchEngage.Core.Messaging
 {
 	public class BusyStatusMessage
 	{

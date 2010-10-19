@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using KillSwitchEngage.Core.Messaging;
 using Magellan.Framework;
+using System;
 
 namespace KillSwitchEngage.UI.Infrastructure
 {

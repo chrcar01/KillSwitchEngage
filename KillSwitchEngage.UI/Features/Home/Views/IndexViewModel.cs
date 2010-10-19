@@ -2,6 +2,7 @@
 using System;
 using System.Threading;
 using System.Windows.Input;
+using KillSwitchEngage.Core.ViewModels;
 
 namespace KillSwitchEngage.UI.Features.Home.Views
 {

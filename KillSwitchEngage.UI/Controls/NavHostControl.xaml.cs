@@ -1,12 +1,12 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using KillSwitchEngage.UI.Infrastructure;
+using KillSwitchEngage.Core.Navigation;
 using Magellan;
 using Magellan.Routing;
 using Magellan.Transitionals;
 using System;
 using System.Windows;
 using System.Windows.Controls;
-using KillSwitchEngage.UI.Infrastructure.Navigation;
+using KillSwitchEngage.Core.Messaging;
 
 namespace KillSwitchEngage.Controls
 {

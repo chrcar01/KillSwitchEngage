@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KillSwitchEngage.UI.Infrastructure.Navigation
+namespace KillSwitchEngage.Core.Navigation
 {
 	public class NavigationEventArgs<TModel> : NavigationEventArgs
 	{

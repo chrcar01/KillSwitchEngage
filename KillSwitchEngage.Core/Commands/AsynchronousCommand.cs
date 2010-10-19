@@ -1,8 +1,9 @@
 using System;
 using System.Windows.Input;
 using System.ComponentModel;
+using KillSwitchEngage.Core.Messaging;
 
-namespace KillSwitchEngage.UI.Infrastructure
+namespace KillSwitchEngage.Core.Commands
 {
 	public class AsynchronousCommand : ICommand
 	{

@@ -2,7 +2,7 @@ using System;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Messaging;
 
-namespace KillSwitchEngage.UI.Infrastructure
+namespace KillSwitchEngage.Core.Commands
 {
 	public class MessageBoxCommand : ICommand
 	{

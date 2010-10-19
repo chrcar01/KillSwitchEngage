@@ -1,11 +1,12 @@
 ﻿using AvalonDock;
 using GalaSoft.MvvmLight.Command;
+using KillSwitchEngage.Core.ViewModels;
 using KillSwitchEngage.UI.Infrastructure;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Input;
 using System.Reflection;
+using System.Windows.Input;
 using mag = Magellan.Framework;
 
 namespace KillSwitchEngage.UI

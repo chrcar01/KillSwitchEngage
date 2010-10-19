@@ -1,9 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using KillSwitchEngage.Core.Navigation;
 using System;
 using System.Windows.Input;
-using KillSwitchEngage.UI.Infrastructure.Navigation;
 
-namespace KillSwitchEngage.UI.Infrastructure
+namespace KillSwitchEngage.Core.Commands
 {
 	public class NavigateCommand : ICommand
 	{

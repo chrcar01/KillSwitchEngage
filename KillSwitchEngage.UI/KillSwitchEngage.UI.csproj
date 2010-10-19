@@ -88,8 +88,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Infrastructure\IBusy.cs" />
-    <Compile Include="Infrastructure\MessageBoxCommand.cs" />
+    <Compile Include="Infrastructure\CoreController.cs" />
     <Page Include="Controls\BusyIndicator.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -128,17 +127,8 @@
       <DependentUpon>Index.xaml</DependentUpon>
     </Compile>
     <Compile Include="Features\Home\Views\IndexViewModel.cs" />
-    <Compile Include="Infrastructure\AsynchronousCommand.cs" />
-    <Compile Include="Infrastructure\BusyStatusMessage.cs" />
-    <Compile Include="Infrastructure\CoreController.cs" />
-    <Compile Include="Infrastructure\CoreViewModel.cs" />
     <Compile Include="Infrastructure\DocumentAddedEventArgs.cs" />
     <Compile Include="Infrastructure\DocumentAddRequestedEventArgs.cs" />
-    <Compile Include="Infrastructure\ISupportMessageTokens.cs" />
-    <Compile Include="Infrastructure\NavigateCommand.cs" />
-    <Compile Include="Infrastructure\Navigation\NavigationDirections.cs" />
-    <Compile Include="Infrastructure\Navigation\NavigationEventArgs.cs" />
-    <Compile Include="Infrastructure\Navigation\NavigationEventArgs`1.cs" />
     <Compile Include="Infrastructure\ValueConverters\BoolToVisibilityConverter.cs" />
     <Compile Include="Infrastructure\WindsorControllerFactory.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -172,7 +162,12 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\KillSwitchEngage.Core\KillSwitchEngage.Core.csproj">
+      <Project>{31BD2473-6784-47EE-81A5-8E0AD455D946}</Project>
+      <Name>KillSwitchEngage.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
