@@ -90,9 +90,6 @@
     </ApplicationDefinition>
     <Compile Include="Infrastructure\IBusy.cs" />
     <Compile Include="Infrastructure\MessageBoxCommand.cs" />
-    <Compile Include="Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
-    </Compile>
     <Page Include="Controls\BusyIndicator.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -139,19 +136,15 @@
     <Compile Include="Infrastructure\DocumentAddRequestedEventArgs.cs" />
     <Compile Include="Infrastructure\ISupportMessageTokens.cs" />
     <Compile Include="Infrastructure\NavigateCommand.cs" />
-    <Compile Include="Infrastructure\NavigationDirections.cs" />
-    <Compile Include="Infrastructure\NavigationEventArgs.cs" />
-    <Compile Include="Infrastructure\NavigationEventArgs`1.cs" />
+    <Compile Include="Infrastructure\Navigation\NavigationDirections.cs" />
+    <Compile Include="Infrastructure\Navigation\NavigationEventArgs.cs" />
+    <Compile Include="Infrastructure\Navigation\NavigationEventArgs`1.cs" />
     <Compile Include="Infrastructure\ValueConverters\BoolToVisibilityConverter.cs" />
     <Compile Include="Infrastructure\WindsorControllerFactory.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Window1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindowViewModel.cs" />

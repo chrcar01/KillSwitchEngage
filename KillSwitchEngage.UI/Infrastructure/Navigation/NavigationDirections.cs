@@ -1,6 +1,6 @@
 using System;
 
-namespace KillSwitchEngage.UI.Infrastructure
+namespace KillSwitchEngage.UI.Infrastructure.Navigation
 {
 	public enum NavigationDirections
 	{

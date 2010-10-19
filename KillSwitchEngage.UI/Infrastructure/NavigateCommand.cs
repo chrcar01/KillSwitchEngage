@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Windows.Input;
+using KillSwitchEngage.UI.Infrastructure.Navigation;
 
 namespace KillSwitchEngage.UI.Infrastructure
 {

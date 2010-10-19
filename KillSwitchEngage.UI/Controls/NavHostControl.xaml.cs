@@ -6,6 +6,7 @@ using Magellan.Transitionals;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using KillSwitchEngage.UI.Infrastructure.Navigation;
 
 namespace KillSwitchEngage.Controls
 {

@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Messaging;
 using Slf;
 using System;
 using System.Windows.Input;
+using KillSwitchEngage.UI.Infrastructure.Navigation;
 
 namespace KillSwitchEngage.UI.Infrastructure
 {
