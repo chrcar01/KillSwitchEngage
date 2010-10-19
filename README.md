@@ -10,3 +10,5 @@ Main Technologies/Tools/Frameworks:
 * [Magellan 2.0](http://code.google.com/p/magellan-framework/)
 * [MVVM Light Toolkit 3.0](http://mvvmlight.codeplex.com/)
 * [Avalon Dock](http://avalondock.codeplex.com/)
+* [Enterprise Library 5.0 Logging](http://entlib.codeplex.com/) hidden behind [Simple Logging Facade](http://slf.codeplex.com/)
+
