@@ -61,9 +61,11 @@
     <Compile Include="Commands\AsynchronousCommand.cs" />
     <Compile Include="Commands\MessageBoxCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
+    <Compile Include="Messaging\AddDocumentMessage.cs" />
     <Compile Include="Messaging\BusyStatusMessage.cs" />
     <Compile Include="Messaging\IBusy.cs" />
     <Compile Include="Messaging\ISupportMessageTokens.cs" />
+    <Compile Include="Navigation\ControllerActionDescriptor.cs" />
     <Compile Include="Navigation\NavigationDirections.cs" />
     <Compile Include="Navigation\NavigationEventArgs.cs" />
     <Compile Include="Navigation\NavigationEventArgs`1.cs" />

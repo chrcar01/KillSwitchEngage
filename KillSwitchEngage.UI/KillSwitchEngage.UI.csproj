@@ -131,8 +131,12 @@
       <DependentUpon>Index.xaml</DependentUpon>
     </Compile>
     <Compile Include="Features\Home\Views\IndexViewModel.cs" />
+    <Compile Include="Infrastructure\DefaultControllerActionParser.cs" />
     <Compile Include="Infrastructure\DocumentAddedEventArgs.cs" />
     <Compile Include="Infrastructure\DocumentAddRequestedEventArgs.cs" />
+    <Compile Include="Infrastructure\IControllerActionParser.cs" />
+    <Compile Include="Infrastructure\IControllerActionVerifier.cs" />
+    <Compile Include="Infrastructure\ReflectionBasedControllerActionVerifier.cs" />
     <Compile Include="Infrastructure\ValueConverters\BoolToVisibilityConverter.cs" />
     <Compile Include="Infrastructure\WindsorControllerFactory.cs" />
     <Compile Include="MainWindow.xaml.cs">
