@@ -7,7 +7,7 @@ namespace KillSwitchEngage.Core.Commands
 	public class MessageBoxCommand : ICommand
 	{
 		private string _content;
-		private Func<bool> _canExecute;
+        private Func<bool> _canExecute = null;
 		private DialogMessage _message;
 		private string _messageToken;
 		public MessageBoxCommand(string content, string messageToken)
