@@ -13,9 +13,12 @@ namespace KillSwitchEngage.Core.ViewModels
 	{
 		public ICommand AsyncCommand(Action activity)
 		{
-			return AsyncCommand(activity, null);
+			return AsyncCommand(activity);
 		}
-
+		public ICommand AsyncCommand(Action activity, Action onComplete)
+		{
+			return new AsynchronousCommand(this, activity, onComplete);
+		}
         public ICommand AsyncCommand(Action activity, Func<bool> canExecute)
 		{
 			return new AsynchronousCommand(this, activity, canExecute);
@@ -26,6 +29,14 @@ namespace KillSwitchEngage.Core.ViewModels
 			return new MessageBoxCommand(content, MessageToken);
 		}
 
+		public void NavigateForwardTo(string controller, string action)
+		{
+			Messenger.Default.Send<NavigationEventArgs>(new NavigationEventArgs(controller, action), MessageToken);
+		}
+		public void NavigateBackwardTo(string controller, string action)
+		{
+			Messenger.Default.Send<NavigationEventArgs>(new NavigationEventArgs(controller, action, NavigationDirections.Backward), MessageToken);
+		}
 		#region IBusy
 		private bool _isBusy;
 		public bool IsBusy

@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="KillSwitchEngage.Data.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="KillSwitchEngageDataStoreContainer">
+          <EntitySet Name="Company" EntityType="KillSwitchEngage.Data.Store.Company" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CompanyContact" EntityType="KillSwitchEngage.Data.Store.CompanyContact" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Contact" EntityType="KillSwitchEngage.Data.Store.Contact" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ContactType" EntityType="KillSwitchEngage.Data.Store.ContactType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="State" EntityType="KillSwitchEngage.Data.Store.State" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Company_State" Association="KillSwitchEngage.Data.Store.FK_Company_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="Company" EntitySet="Company" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyContact_Company" Association="KillSwitchEngage.Data.Store.FK_CompanyContact_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="CompanyContact" EntitySet="CompanyContact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyContact_Contact" Association="KillSwitchEngage.Data.Store.FK_CompanyContact_Contact">
+            <End Role="Contact" EntitySet="Contact" />
+            <End Role="CompanyContact" EntitySet="CompanyContact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyContact_ContactType" Association="KillSwitchEngage.Data.Store.FK_CompanyContact_ContactType">
+            <End Role="ContactType" EntitySet="ContactType" />
+            <End Role="CompanyContact" EntitySet="CompanyContact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_State" Association="KillSwitchEngage.Data.Store.FK_Contact_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Address" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="City" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="StateID" Type="int" Nullable="false" />
+          <Property Name="Zip" Type="varchar" Nullable="false" MaxLength="9" />
+        </EntityType>
+        <EntityType Name="CompanyContact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="ContactID" Type="int" Nullable="false" />
+          <Property Name="ContactTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Address" Type="varchar" MaxLength="200" />
+          <Property Name="City" Type="varchar" MaxLength="200" />
+          <Property Name="StateID" Type="int" />
+          <Property Name="Zip" Type="varchar" MaxLength="9" />
+        </EntityType>
+        <EntityType Name="ContactType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="varchar" Nullable="false" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="char" Nullable="false" MaxLength="2" />
+          <Property Name="Abbreviation" Type="char" Nullable="false" MaxLength="2" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="Display" Type="varchar" Nullable="false" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK_Company_State">
+          <End Role="State" Type="KillSwitchEngage.Data.Store.State" Multiplicity="1" />
+          <End Role="Company" Type="KillSwitchEngage.Data.Store.Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyContact_Company">
+          <End Role="Company" Type="KillSwitchEngage.Data.Store.Company" Multiplicity="1" />
+          <End Role="CompanyContact" Type="KillSwitchEngage.Data.Store.CompanyContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CompanyContact">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyContact_Contact">
+          <End Role="Contact" Type="KillSwitchEngage.Data.Store.Contact" Multiplicity="1" />
+          <End Role="CompanyContact" Type="KillSwitchEngage.Data.Store.CompanyContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CompanyContact">
+              <PropertyRef Name="ContactID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyContact_ContactType">
+          <End Role="ContactType" Type="KillSwitchEngage.Data.Store.ContactType" Multiplicity="1" />
+          <End Role="CompanyContact" Type="KillSwitchEngage.Data.Store.CompanyContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CompanyContact">
+              <PropertyRef Name="ContactTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_State">
+          <End Role="State" Type="KillSwitchEngage.Data.Store.State" Multiplicity="0..1" />
+          <End Role="Contact" Type="KillSwitchEngage.Data.Store.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KillSwitchEngage.Data" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="KillSwitchEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Companies" EntityType="KillSwitchEngage.Data.Company" />
+          <EntitySet Name="Contacts" EntityType="KillSwitchEngage.Data.Contact" />
+          <EntitySet Name="ContactTypes" EntityType="KillSwitchEngage.Data.ContactType" />
+          <EntitySet Name="States" EntityType="KillSwitchEngage.Data.State" />
+          <EntitySet Name="CompanyContacts" EntityType="KillSwitchEngage.Data.CompanyContact" />
+          <AssociationSet Name="FK_Company_State" Association="KillSwitchEngage.Data.FK_Company_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyContact_Company" Association="KillSwitchEngage.Data.FK_CompanyContact_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="CompanyContact" EntitySet="CompanyContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyContact_Contact" Association="KillSwitchEngage.Data.FK_CompanyContact_Contact">
+            <End Role="Contact" EntitySet="Contacts" />
+            <End Role="CompanyContact" EntitySet="CompanyContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyContact_ContactType" Association="KillSwitchEngage.Data.FK_CompanyContact_ContactType">
+            <End Role="ContactType" EntitySet="ContactTypes" />
+            <End Role="CompanyContact" EntitySet="CompanyContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_State" Association="KillSwitchEngage.Data.FK_Contact_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="StateID" Type="Int32" Nullable="false" />
+          <Property Name="Zip" Type="String" Nullable="false" MaxLength="9" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="State" Relationship="KillSwitchEngage.Data.FK_Company_State" FromRole="Company" ToRole="State" />
+          <NavigationProperty Name="CompanyContacts" Relationship="KillSwitchEngage.Data.FK_CompanyContact_Company" FromRole="Company" ToRole="CompanyContact" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="StateID" Type="Int32" />
+          <Property Name="Zip" Type="String" MaxLength="9" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="CompanyContacts" Relationship="KillSwitchEngage.Data.FK_CompanyContact_Contact" FromRole="Contact" ToRole="CompanyContact" />
+          <NavigationProperty Name="State" Relationship="KillSwitchEngage.Data.FK_Contact_State" FromRole="Contact" ToRole="State" />
+        </EntityType>
+        <EntityType Name="ContactType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="CompanyContacts" Relationship="KillSwitchEngage.Data.FK_CompanyContact_ContactType" FromRole="ContactType" ToRole="CompanyContact" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" />
+          <Property Name="Abbreviation" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="Display" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Companies" Relationship="KillSwitchEngage.Data.FK_Company_State" FromRole="State" ToRole="Company" />
+          <NavigationProperty Name="Contacts" Relationship="KillSwitchEngage.Data.FK_Contact_State" FromRole="State" ToRole="Contact" />
+        </EntityType>
+        <EntityType Name="CompanyContact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CompanyID" Nullable="false" />
+          <Property Type="Int32" Name="ContactID" Nullable="false" />
+          <Property Type="Int32" Name="ContactTypeID" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="KillSwitchEngage.Data.FK_CompanyContact_Company" FromRole="CompanyContact" ToRole="Company" />
+          <NavigationProperty Name="Contact" Relationship="KillSwitchEngage.Data.FK_CompanyContact_Contact" FromRole="CompanyContact" ToRole="Contact" />
+          <NavigationProperty Name="ContactType" Relationship="KillSwitchEngage.Data.FK_CompanyContact_ContactType" FromRole="CompanyContact" ToRole="ContactType" />
+        </EntityType>
+        <Association Name="FK_Company_State">
+          <End Type="KillSwitchEngage.Data.State" Role="State" Multiplicity="1" />
+          <End Type="KillSwitchEngage.Data.Company" Role="Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyContact_Company">
+          <End Type="KillSwitchEngage.Data.Company" Role="Company" Multiplicity="1" />
+          <End Type="KillSwitchEngage.Data.CompanyContact" Role="CompanyContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CompanyContact">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyContact_Contact">
+          <End Type="KillSwitchEngage.Data.Contact" Role="Contact" Multiplicity="1" />
+          <End Type="KillSwitchEngage.Data.CompanyContact" Role="CompanyContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CompanyContact">
+              <PropertyRef Name="ContactID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyContact_ContactType">
+          <End Type="KillSwitchEngage.Data.ContactType" Role="ContactType" Multiplicity="1" />
+          <End Type="KillSwitchEngage.Data.CompanyContact" Role="CompanyContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CompanyContact">
+              <PropertyRef Name="ContactTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_State">
+          <End Type="KillSwitchEngage.Data.State" Role="State" Multiplicity="0..1" />
+          <End Type="KillSwitchEngage.Data.Contact" Role="Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KillSwitchEngageDataStoreContainer" CdmEntityContainer="KillSwitchEntities">
+          <EntitySetMapping Name="Companies"><EntityTypeMapping TypeName="KillSwitchEngage.Data.Company"><MappingFragment StoreEntitySet="Company">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+            <ScalarProperty Name="City" ColumnName="City" />
+            <ScalarProperty Name="StateID" ColumnName="StateID" />
+            <ScalarProperty Name="Zip" ColumnName="Zip" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Contacts"><EntityTypeMapping TypeName="KillSwitchEngage.Data.Contact"><MappingFragment StoreEntitySet="Contact">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+            <ScalarProperty Name="City" ColumnName="City" />
+            <ScalarProperty Name="StateID" ColumnName="StateID" />
+            <ScalarProperty Name="Zip" ColumnName="Zip" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ContactTypes"><EntityTypeMapping TypeName="KillSwitchEngage.Data.ContactType"><MappingFragment StoreEntitySet="ContactType">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Label" ColumnName="Label" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="States"><EntityTypeMapping TypeName="KillSwitchEngage.Data.State"><MappingFragment StoreEntitySet="State">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Code" ColumnName="Code" />
+            <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Display" ColumnName="Display" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="CompanyContacts">
+            <EntityTypeMapping TypeName="KillSwitchEngage.Data.CompanyContact">
+              <MappingFragment StoreEntitySet="CompanyContact">
+                <ScalarProperty Name="ContactTypeID" ColumnName="ContactTypeID" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="KillSwitch">
+        <EntityTypeShape EntityType="KillSwitchEngage.Data.Company" Width="1.5" PointX="0.75" PointY="0.75" Height="2.172587890625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KillSwitchEngage.Data.Contact" Width="1.5" PointX="2.75" PointY="0.75" Height="2.5571907552083331" IsExpanded="true" />
+        <EntityTypeShape EntityType="KillSwitchEngage.Data.ContactType" Width="1.5" PointX="4.75" PointY="0.75" Height="1.4033821614583326" IsExpanded="true" />
+        <EntityTypeShape EntityType="KillSwitchEngage.Data.State" Width="1.5" PointX="0.75" PointY="4.75" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="KillSwitchEngage.Data.CompanyContact" Width="1.5" PointX="7" PointY="1" Height="2.3648893229166674" />
+        <AssociationConnector Association="KillSwitchEngage.Data.FK_Company_State" >
+          <ConnectorPoint PointX="1.5" PointY="4.75" />
+          <ConnectorPoint PointX="1.5" PointY="3.3071907552083331" />
+        </AssociationConnector>
+        <AssociationConnector Association="KillSwitchEngage.Data.FK_CompanyContact_Company" >
+          <ConnectorPoint PointX="2.2499999999999996" PointY="3.3071907552083331" />
+          <ConnectorPoint PointX="2.625" PointY="3.6821907552083335" />
+          <ConnectorPoint PointX="2.625" PointY="3.7398893229166674" />
+          <ConnectorPoint PointX="3.4166666666666665" PointY="3.739889322916667" />
+          <ConnectorPoint PointX="3.5833333333333335" PointY="3.7398893229166674" />
+          <ConnectorPoint PointX="6.625" PointY="3.7398893229166674" />
+          <ConnectorPoint PointX="7" PointY="3.3648893229166674" />
+        </AssociationConnector>
+        <AssociationConnector Association="KillSwitchEngage.Data.FK_CompanyContact_Contact" >
+          <ConnectorPoint PointX="4.25" PointY="2.8576871744791665" />
+          <ConnectorPoint PointX="7" PointY="2.8576871744791665" />
+        </AssociationConnector>
+        <AssociationConnector Association="KillSwitchEngage.Data.FK_CompanyContact_ContactType" >
+          <ConnectorPoint PointX="6.25" PointY="1.672841796875" />
+          <ConnectorPoint PointX="7" PointY="1.672841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="KillSwitchEngage.Data.FK_Contact_State" >
+          <ConnectorPoint PointX="2.25" PointY="5.9324446614583328" />
+          <ConnectorPoint PointX="3.5" PointY="5.9324446614583328" />
+          <ConnectorPoint PointX="3.5" PointY="3.3071907552083331" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -27,9 +27,9 @@
                     Command="{Binding AddDocumentCommand}"
                     CommandParameter="Home.Index"></MenuItem>
                 <MenuItem
-                    Header="Cool Button"
+                    Header="Manage Companies"
                     Command="{Binding AddDocumentCommand}"
-                    CommandParameter="Home.CoolButton2"></MenuItem>
+                    CommandParameter="CompanyManager.ListCompanies"></MenuItem>
             </MenuItem>
         </Menu>
         <ad:DockingManager

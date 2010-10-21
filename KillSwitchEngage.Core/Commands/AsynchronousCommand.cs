@@ -10,17 +10,33 @@ namespace KillSwitchEngage.Core.Commands
 		private BackgroundWorker _worker;
 		private IBusy _busyObject;
 		private Func<bool> _canExecute;
+		
 		public AsynchronousCommand(IBusy target, Action activity)
-			: this(target, activity, null)
+			: this(target, null, activity, null)
 		{
 		}
-        public AsynchronousCommand(IBusy target, Action activity, Func<bool> canExecute)
+		public AsynchronousCommand(IBusy target, Action activity, Action onComplete)
+			: this(target, activity, onComplete, null)
+		{
+		}
+	public AsynchronousCommand(IBusy target, Action activity, Func<bool> canExecute)
+			: this(target, activity, null, canExecute)
+		{
+		}
+        public AsynchronousCommand(IBusy target, Action activity, Action onComplete, Func<bool> canExecute)
 		{
 			_canExecute = canExecute;
 			_busyObject = target;
 			_worker = new BackgroundWorker();
 			_worker.DoWork += (x, y) => activity.Invoke();
-			_worker.RunWorkerCompleted += (x, y) => _busyObject.IsBusy = false;
+			_worker.RunWorkerCompleted += (x, y) =>
+			{
+				if (onComplete != null)
+				{
+					onComplete();
+				}
+				_busyObject.IsBusy = false;
+			};
 		}
 		
 		public bool CanExecute(object parameter)

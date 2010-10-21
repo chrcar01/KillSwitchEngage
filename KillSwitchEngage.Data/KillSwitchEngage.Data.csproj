@@ -33,6 +33,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,8 +44,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Generated\Company.cs">
+      <DependentUpon>PocoGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\CompanyContact.cs">
+      <DependentUpon>PocoGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\Contact.cs">
+      <DependentUpon>PocoGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\ContactType.cs">
+      <DependentUpon>PocoGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\PocoGenerator.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PocoGenerator.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\PocoGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PocoGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\State.cs">
+      <DependentUpon>PocoGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Generated\KillSwitch.edmx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Generated\PocoGenerator.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PocoGenerator.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Generated\PocoGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PocoGenerator.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
