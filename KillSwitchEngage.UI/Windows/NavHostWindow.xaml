@@ -1,0 +1,10 @@
+﻿<Window x:Class="KillSwitchEngage.UI.Windows.NavHostWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:controls="clr-namespace:KillSwitchEngage.Controls"
+        Title="NavHostWindow" Height="300" Width="300">
+    <Grid>
+		<controls:NavHostControl
+			x:Name="navHost"></controls:NavHostControl>
+	</Grid>
+</Window>

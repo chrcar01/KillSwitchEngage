@@ -6,6 +6,7 @@ using KillSwitchEngage.Controls;
 using AvalonDock;
 using GalaSoft.MvvmLight.Messaging;
 using KillSwitchEngage.Core.Messaging;
+using KillSwitchEngage.UI.Windows;
 
 namespace KillSwitchEngage.UI
 {
@@ -36,6 +37,18 @@ namespace KillSwitchEngage.UI
                     AddDocument(args.Content.Controller, args.Content.Action);
                 }
             );
+
+			Messenger.Default.Register<ModalMessage>(
+				this,
+				args =>
+				{
+					var win = new NavHostWindow(_navFactory);
+					win.Navigate(args.Controller, args.Action);
+					win.Owner = this;
+					win.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+					win.ShowDialog();
+				}
+			);
 		}
 
 		private void AddDocument(string controller, string action)

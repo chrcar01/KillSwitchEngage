@@ -1,9 +1,9 @@
-﻿using KillSwitchEngage.Data;
-using KillSwitchEngage.Core.Extensions;
+﻿using KillSwitchEngage.Core.Extensions;
+using KillSwitchEngage.Data;
+using KillSwitchEngage.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using KillSwitchEngage.Data.Repositories;
 
 namespace KillSwitchEngage.Core.Services
 {
@@ -25,10 +25,14 @@ namespace KillSwitchEngage.Core.Services
 			_repo.Save<Company>(company);
 		}
 
-
 		public ObservableCollection<State> GetStates()
 		{
 			return _repo.FindAll<State>().AsObservableCollection();
+		}
+
+		public ObservableCollection<CompanyContact> GetContacts(Company company)
+		{
+			return _repo.FindAll<CompanyContact>(cc => cc.CompanyID == company.ID).AsObservableCollection();
 		}
 	}
 }

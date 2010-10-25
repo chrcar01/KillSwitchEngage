@@ -1,16 +1,30 @@
-﻿using KillSwitchEngage.Data;
+﻿using KillSwitchEngage.Core.Services;
+using KillSwitchEngage.Data;
 using System;
 using System.Collections.ObjectModel;
-using KillSwitchEngage.Core.Services;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
-using KillSwitchEngage.Core.Navigation;
 
 namespace KillSwitchEngage.Core.ViewModels.CompanyManager
 {
 	public class EditCompanyViewModel : CoreViewModel
 	{
+		private ObservableCollection<CompanyContact> _contacts;
+		public ObservableCollection<CompanyContact> Contacts
+		{
+			get
+			{
+				if (_contacts == null)
+				{
+					_contacts = new ObservableCollection<CompanyContact>();
+				}
+				return _contacts;
+			}
+			set
+			{
+				_contacts = value;
+				RaisePropertyChanged("Contacts");
+			}
+		}
 		private Company _company;
 		public Company Company
 		{
@@ -26,6 +40,7 @@ namespace KillSwitchEngage.Core.ViewModels.CompanyManager
 			{
 				_company = value;
 				RaisePropertyChanged("Company");
+				Contacts = _service.GetContacts(Company);
 			}
 		}
 
@@ -46,6 +61,13 @@ namespace KillSwitchEngage.Core.ViewModels.CompanyManager
 				RaisePropertyChanged("States");
 			}
 		}
+		public ICommand CreateContactCommand
+		{
+			get
+			{
+				return base.ModalCommand("CompanyManager", "CreateContact");
+			}
+		}
 		public ICommand SaveCompanyCommand
 		{
 			get
@@ -61,7 +83,7 @@ namespace KillSwitchEngage.Core.ViewModels.CompanyManager
 		public EditCompanyViewModel(ICompanyManagerService service)
 		{
 			_service = service;
-			States = _service.GetStates();
+			States = _service.GetStates();			
 		}
 	}
 }

@@ -31,6 +31,8 @@
                 Height="Auto"></RowDefinition>
             <RowDefinition
                 Height="Auto"></RowDefinition>
+			<RowDefinition
+				Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         
         <Label
@@ -91,5 +93,40 @@
 				Command="{Binding SaveCompanyCommand}"
 				Content="Save"></Button>
 		</StackPanel>
+		
+		<Label
+			Grid.Row="6"
+			Grid.Column="0">Contacts :</Label>
+		<DockPanel
+			Grid.Row="6"
+			Grid.Column="1">
+			<StackPanel 
+				DockPanel.Dock="Top"
+				Orientation="Horizontal">
+				<Button
+					Content="New Contact"
+					Command="{Binding CreateContactCommand}"
+					HorizontalAlignment="Left"></Button>
+			</StackPanel>
+			<DataGrid
+				Grid.Row="6"
+				Grid.Column="1"
+				ItemsSource="{Binding Contacts}">
+				<DataGrid.Columns>
+					<DataGridTextColumn
+						Header="Name"
+						MinWidth="100"
+						Binding="{Binding Contact.Name}"></DataGridTextColumn>
+					<DataGridTextColumn
+						Header="Type"
+						MinWidth="100"
+						Binding="{Binding ContactType.Label}"></DataGridTextColumn>
+					<DataGridTextColumn
+						Header="State"
+						MinWidth="100"
+						Binding="{Binding Contact.State.Name}"></DataGridTextColumn>
+				</DataGrid.Columns>
+			</DataGrid>
+		</DockPanel>
 	</Grid>
 </Page>

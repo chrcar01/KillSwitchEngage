@@ -49,7 +49,7 @@ namespace KillSwitchEngage.Core.Commands
 
 			string controller = controllerDotAction.Split('.')[0];
 			string action = controllerDotAction.Split('.')[1];			
-			Messenger.Default.Send<NavigationEventArgs>(new NavigationEventArgs(controller, action, _direction), _messageToken);
+			Messenger.Default.Send<NavigationMessage>(new NavigationMessage(controller, action, _direction), _messageToken);
 		}
 	}
 }

@@ -27,21 +27,16 @@ namespace KillSwitchEngage.Core.ViewModels.CompanyManager
 				_companies = value;
 			}
 		}
-		private RelayCommand<Company> _editCompanyCommand;
+		
 		public ICommand EditCompanyCommand
 		{
 			get
 			{
-				if (_editCompanyCommand == null)
-				{
-					_editCompanyCommand = new RelayCommand<Company>(
-						c => Messenger.Default.Send<NavigationEventArgs>(
-							new NavigationEventArgs("CompanyManager", "EditCompany", new { company = c }), MessageToken)
-					);
-				}
-				return _editCompanyCommand;
+				return base.CreateNavigateCommand<Company>("CompanyManager", "EditCompany", 
+					company => { return new { company }; });
 			}
 		}
+		
 		private ICompanyManagerService _service;
 		public ListCompaniesViewModel(ICompanyManagerService service)
 		{

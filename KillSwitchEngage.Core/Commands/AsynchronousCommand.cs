@@ -19,7 +19,7 @@ namespace KillSwitchEngage.Core.Commands
 			: this(target, activity, onComplete, null)
 		{
 		}
-	public AsynchronousCommand(IBusy target, Action activity, Func<bool> canExecute)
+		public AsynchronousCommand(IBusy target, Action activity, Func<bool> canExecute)
 			: this(target, activity, null, canExecute)
 		{
 		}
@@ -50,6 +50,7 @@ namespace KillSwitchEngage.Core.Commands
 			if (CanExecuteChanged == null) return;
 			CanExecuteChanged(this, new EventArgs());
 		}
+		
 		public void Execute(object parameter)
 		{
 			_busyObject.IsBusy = true;

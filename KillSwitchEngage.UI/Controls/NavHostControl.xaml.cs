@@ -47,18 +47,21 @@ namespace KillSwitchEngage.Controls
 		}
 		#endregion
 
+		public NavHostControl()
+		{			
+			InitializeComponent();
+		}
 		private INavigator _navigator;
 		public NavHostControl(NavigatorFactory navFactory)
 		{
 			InitializeComponent();
-			_navigator = navFactory.CreateNavigator(mainFrame);
-			RegisterMessageHandlers();
+			InitializeNavigator(navFactory);			
 		}
 
 		private void RegisterMessageHandlers()
 		{
 
-			Messenger.Default.Register<NavigationEventArgs>(
+			Messenger.Default.Register<NavigationMessage>(
 				this, 
 				MessageToken, 
 				args => NavigateInternal(args.Controller, args.Action, args.RouteValues, args.Direction)
@@ -79,6 +82,15 @@ namespace KillSwitchEngage.Controls
 					args.ProcessCallback(result);
 				}
 			);
+
+			Messenger.Default.Register<ModalMessage>(
+				this,
+				MessageToken,
+				args =>
+				{
+					//create a new placeholder window
+				}
+			);
 		}
 
 		private void NavigateInternal(string controller, string action, object routeValues, NavigationDirections direction)
@@ -92,5 +104,11 @@ namespace KillSwitchEngage.Controls
 			NavigateInternal(controller, action, null, NavigationDirections.Forward);
 		}
 
+
+		public void InitializeNavigator(NavigatorFactory navFactory)
+		{
+			_navigator = navFactory.CreateNavigator(mainFrame);
+			RegisterMessageHandlers();			
+		}
 	}
 }

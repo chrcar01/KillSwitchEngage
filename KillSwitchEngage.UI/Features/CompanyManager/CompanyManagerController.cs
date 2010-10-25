@@ -10,19 +10,21 @@ namespace KillSwitchEngage.UI.Features.CompanyManager
 	{
 		public ActionResult ListCompanies()
 		{
-			return View(TypeResolver.Get<ListCompaniesViewModel>());
+			return View<ListCompaniesViewModel>();
 		}
 
 		public ActionResult EditCompany(Company company)
 		{
-			var model = TypeResolver.Get<EditCompanyViewModel>();
-			model.Company = company;
-			return View(model);
+			return View<EditCompanyViewModel>(model => model.Company = company);
 		}
-
+		
 		public ActionResult CreateCompany()
 		{
-			return View("EditCompany", TypeResolver.Get<EditCompanyViewModel>());
+			return View<EditCompanyViewModel>("EditCompany");
+		}
+		public ActionResult CreateContact()
+		{
+			return Page();
 		}
 	}
 }

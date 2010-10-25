@@ -97,10 +97,16 @@
     <Compile Include="Features\CompanyManager\Views\EditCompany.xaml.cs">
       <DependentUpon>EditCompany.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Features\CompanyManager\Views\EditContact.xaml.cs">
+      <DependentUpon>EditContact.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Features\CompanyManager\Views\ListCompanies.xaml.cs">
       <DependentUpon>ListCompanies.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\CoreController.cs" />
+    <Compile Include="Windows\NavHostWindow.xaml.cs">
+      <DependentUpon>NavHostWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Controls\BusyIndicator.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -114,6 +120,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Features\CompanyManager\Views\EditCompany.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\CompanyManager\Views\EditContact.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -161,6 +171,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\NavHostWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

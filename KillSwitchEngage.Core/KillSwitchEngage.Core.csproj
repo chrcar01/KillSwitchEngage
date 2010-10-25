@@ -67,6 +67,7 @@
     <Compile Include="Messaging\BusyStatusMessage.cs" />
     <Compile Include="Messaging\IBusy.cs" />
     <Compile Include="Messaging\ISupportMessageTokens.cs" />
+    <Compile Include="Messaging\ModalMessage.cs" />
     <Compile Include="Navigation\ControllerActionDescriptor.cs" />
     <Compile Include="Navigation\NavigationDirections.cs" />
     <Compile Include="Navigation\NavigationEventArgs.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Services\CompanyManagerService.cs" />
     <Compile Include="Services\ICompanyManagerService.cs" />
     <Compile Include="ViewModels\CompanyManager\EditCompanyViewModel.cs" />
+    <Compile Include="ViewModels\CompanyManager\EditContactViewModel.cs" />
     <Compile Include="ViewModels\CompanyManager\ListCompaniesViewModel.cs" />
     <Compile Include="ViewModels\CoreViewModel.cs" />
   </ItemGroup>

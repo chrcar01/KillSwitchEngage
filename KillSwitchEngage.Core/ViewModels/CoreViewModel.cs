@@ -6,6 +6,7 @@ using KillSwitchEngage.Core.Navigation;
 using Slf;
 using System;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 
 namespace KillSwitchEngage.Core.ViewModels
 {
@@ -31,12 +32,29 @@ namespace KillSwitchEngage.Core.ViewModels
 
 		public void NavigateForwardTo(string controller, string action)
 		{
-			Messenger.Default.Send<NavigationEventArgs>(new NavigationEventArgs(controller, action), MessageToken);
+			Messenger.Default.Send<NavigationMessage>(new NavigationMessage(controller, action), MessageToken);
 		}
 		public void NavigateBackwardTo(string controller, string action)
 		{
-			Messenger.Default.Send<NavigationEventArgs>(new NavigationEventArgs(controller, action, NavigationDirections.Backward), MessageToken);
+			Messenger.Default.Send<NavigationMessage>(new NavigationMessage(controller, action, NavigationDirections.Backward), MessageToken);
 		}
+
+		public ICommand CreateNavigateCommand<TData>(string controller, string action, Func<TData, object> routeData)
+		{			
+			return new RelayCommand<TData>(
+				args => Messenger.Default.Send<NavigationMessage>(
+					new NavigationMessage(controller, action, routeData(args)), MessageToken)
+			);
+
+		}
+
+		public ICommand ModalCommand(string controller, string action)
+		{
+			return new RelayCommand(
+				() => Messenger.Default.Send<ModalMessage>(new ModalMessage(controller, action))
+			);
+		}
+
 		#region IBusy
 		private bool _isBusy;
 		public bool IsBusy

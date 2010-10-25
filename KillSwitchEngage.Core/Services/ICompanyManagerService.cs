@@ -10,5 +10,6 @@ namespace KillSwitchEngage.Core.Services
 		IEnumerable<Company> GetCompanies();
 		void SaveCompany(Company company);
 		ObservableCollection<State> GetStates();
+		ObservableCollection<CompanyContact> GetContacts(Company Company);
 	}
 }

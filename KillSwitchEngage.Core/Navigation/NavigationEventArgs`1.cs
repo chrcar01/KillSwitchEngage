@@ -2,7 +2,7 @@
 
 namespace KillSwitchEngage.Core.Navigation
 {
-	public class NavigationEventArgs<TModel> : NavigationEventArgs
+	public class NavigationEventArgs<TModel> : NavigationMessage
 	{
 		public TModel Model { get; private set; }		
 		public NavigationEventArgs(string controller, string action, TModel model)
